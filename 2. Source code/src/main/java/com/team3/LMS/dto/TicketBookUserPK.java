@@ -13,9 +13,6 @@ public class TicketBookUserPK implements Serializable {
 	@Column(name = "isbn", insertable = false, updatable = false)
 	private String isbn;
 
-	@Column(name = "user_id", insertable = false, updatable = false)
-	private int userId;
-
 	@Column(name = "ticket_id", insertable = false, updatable = false)
 	private int ticketId;
 
@@ -28,14 +25,6 @@ public class TicketBookUserPK implements Serializable {
 
 	public void setIsbn(String isbn) {
 		this.isbn = isbn;
-	}
-
-	public int getUserId() {
-		return this.userId;
-	}
-
-	public void setUserId(int userId) {
-		this.userId = userId;
 	}
 
 	public int getTicketId() {
@@ -54,17 +43,14 @@ public class TicketBookUserPK implements Serializable {
 			return false;
 		}
 		TicketBookUserPK castOther = (TicketBookUserPK) other;
-		return this.isbn.equals(castOther.isbn) && (this.userId == castOther.userId)
-				&& (this.ticketId == castOther.ticketId);
+		return this.isbn.equals(castOther.isbn) && (this.ticketId == castOther.ticketId);
 	}
 
 	public int hashCode() {
 		final int prime = 31;
 		int hash = 17;
 		hash = hash * prime + this.isbn.hashCode();
-		hash = hash * prime + this.userId;
 		hash = hash * prime + this.ticketId;
-
 		return hash;
 	}
 }

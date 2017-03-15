@@ -75,7 +75,7 @@ public class UserInfo implements Serializable {
 
 	// bi-directional many-to-one association to TicketBookUser
 	@OneToMany(mappedBy = "userInfo", cascade = CascadeType.ALL, orphanRemoval = true)
-	private List<TicketBookUser> ticketBookUsers;
+	private List<Ticket> ticket;
 
 	public UserInfo() {
 	}
@@ -224,26 +224,26 @@ public class UserInfo implements Serializable {
 	}
 
 	@JsonIgnore
-	public List<TicketBookUser> getTicketBookUsers() {
-		return this.ticketBookUsers;
+	public List<Ticket> getTicket() {
+		return this.ticket;
 	}
 
-	public void setTicketBookUsers(List<TicketBookUser> ticketBookUsers) {
-		this.ticketBookUsers = ticketBookUsers;
+	public void setTicket(List<Ticket> ticket) {
+		this.ticket = ticket;
 	}
 
-	public TicketBookUser addTicketBookUser(TicketBookUser ticketBookUser) {
-		getTicketBookUsers().add(ticketBookUser);
-		ticketBookUser.setUserInfo(this);
+	public Ticket addTicket(Ticket ticket) {
+		getTicket().add(ticket);
+		ticket.setUserInfo(this);
 
-		return ticketBookUser;
+		return ticket;
 	}
 
-	public TicketBookUser removeTicketBookUser(TicketBookUser ticketBookUser) {
-		getTicketBookUsers().remove(ticketBookUser);
-		ticketBookUser.setUserInfo(null);
+	public Ticket removeTicket(Ticket ticket) {
+		getTicket().remove(ticket);
+		ticket.setUserInfo(null);
 
-		return ticketBookUser;
+		return ticket;
 	}
 
 }

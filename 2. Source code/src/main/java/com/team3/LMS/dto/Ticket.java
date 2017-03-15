@@ -9,6 +9,8 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
@@ -39,11 +41,27 @@ public class Ticket implements Serializable {
 	@Column(name = "limition_number", nullable = false)
 	private int limitionNumber;
 
+	@Column(name = "user_id", insertable = false, updatable = false)
+	private int userId;
+
 	// bi-directional many-to-one association to TicketBookUser
 	@OneToMany(mappedBy = "ticket")
 	private List<TicketBookUser> ticketBookUsers;
+	
+	// bi-directional many-to-one association to UserInfo
+	@ManyToOne(optional = false)
+	@JoinColumn(name = "user_id", insertable = false, updatable = false)
+	private UserInfo userInfo;
 
 	public Ticket() {
+	}
+
+	public int getUserId() {
+		return this.userId;
+	}
+
+	public void setUserId(int userId) {
+		this.userId = userId;
 	}
 
 	public int getTicketId() {
@@ -92,6 +110,14 @@ public class Ticket implements Serializable {
 
 	public void setTicketBookUsers(List<TicketBookUser> ticketBookUsers) {
 		this.ticketBookUsers = ticketBookUsers;
+	}
+	
+	public UserInfo getUserInfo() {
+		return this.userInfo;
+	}
+
+	public void setUserInfo(UserInfo userInfo) {
+		this.userInfo = userInfo;
 	}
 
 	public TicketBookUser addTicketBookUser(TicketBookUser ticketBookUser) {

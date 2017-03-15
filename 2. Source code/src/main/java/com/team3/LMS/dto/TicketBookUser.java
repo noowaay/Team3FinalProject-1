@@ -27,11 +27,6 @@ public class TicketBookUser implements Serializable {
 	@JoinColumn(name = "ticket_id", insertable = false, updatable = false)
 	private Ticket ticket;
 
-	// bi-directional many-to-one association to UserInfo
-	@ManyToOne(optional = false)
-	@JoinColumn(name = "user_id", insertable = false, updatable = false)
-	private UserInfo userInfo;
-
 	public TicketBookUser() {
 	}
 
@@ -57,14 +52,6 @@ public class TicketBookUser implements Serializable {
 
 	public void setTicket(Ticket ticket) {
 		this.ticket = ticket;
-	}
-
-	public UserInfo getUserInfo() {
-		return this.userInfo;
-	}
-
-	public void setUserInfo(UserInfo userInfo) {
-		this.userInfo = userInfo;
 	}
 
 }
